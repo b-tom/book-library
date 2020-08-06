@@ -22,44 +22,51 @@ router.post('/create', (req, res, next) => {
   console.log( {body: req.body} );
   Book.create(req.body)
       .then((createdBook) => {
-        res.redirect(`/books/${createdBook._id}`);
+        res.render(`book-views/book-details`, {book: createdBook});
       })
       .catch(error => console.log(`Error while creating book: ${error}`));
 });
 
 //GET route to display de selected book details (by the book id)
 router.get('/details/:bookId', (req, res, next) => {
-  const bookId = req.params;
-
-  Book.findById(bookId)
-  .then(theBook => {
+  Book.findById(req.params.bookId)
+  .then((theBook) => {
     console.log(`The ID from the URL is: ${theBook._id}`);
     console.log(`The Book Information is: ${theBook}`);
-    res.render('book-views/book-details', {theBook});
+    res.render('book-views/book-details', {book: theBook});
   })
   .catch(error => console.log('error while retrieving book',error));
 });
 
 // //GET route to update information about the book
-// router.get('/edit/:bookId', (req, res, next) => {
-//   const { bookId } = req.params;
+router.get('/edit/:bookId', (req, res, next) => {
+  const { bookId } = req.params;
 
-//   Book.findById(bookId)
-//     .then(bookToEdit => {
-//       console.log(bookToEdit);
-//       res.render('book-views/book-edit', bookToEdit);
-//     })
-//     .catch(error => console.log(`Error while getting the book to edit${error}`));
-// });
+  Book.findById(bookId)
+    .then(bookToEdit => {
+      console.log(bookToEdit);
+      res.render('book-views/book-edit', {book: bookToEdit});
+    })
+    .catch(error => console.log(`Error while getting the book to edit${error}`));
+});
 
-// //POST route to update information about the book
-// router.post('/edit/:bookId', (req, res, next) => {
-//   Book.findByIdAndUpdate(req.params.bookId, req.body, { new: true })
-//       .then((updatedBook) => {
-//         console.log(updatedBook);
-//         res.render('book-views/book-details', {updatedBook});
-//       })
-//       .catch(err => console.log(`Error while updating the book: ${err}`));
-// });
+//POST route to update information about the book
+router.post('/edit/:bookId', (req, res, next) => {
+  Book.findByIdAndUpdate(req.params.bookId, req.body, { new: true })
+    .then((updatedBook) => {
+      console.log(`Updated Book information ${updatedBook}`);
+      res.redirect(`/books`);
+    })
+    .catch(err => console.log(`Error while updating the book: ${err}`));
+});
+
+//POST route to delete a book
+router.post("/delete/:bookId", (req, res, send) => {
+  Book.findByIdAndDelete(req.params.bookId)
+    .then(() => {
+      res.redirect("/books");
+    })
+    .catch(error => `Error while deleting Book: ${error}`);
+});
 
 module.exports = router;

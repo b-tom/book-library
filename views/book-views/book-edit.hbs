@@ -1,18 +1,21 @@
-<h2>Edit the book: {{title}}</h2>
+<h2>Edit the book: {{book.title}}</h2>
 
-<form action="/books/edit/{{_id}}" method="post">
+<form action="/books/edit/{{book._id}}" method="post">
 
   <label for="title-input">Title:</label>
-  <input type="text" name="title" id="title-input" value="{{title}}" />
+  <input type="text" name="title" id="title-input" value="{{book.title}}" />
 
   <label for="author-input">Author:</label>
-  <input type="text" name="author" id="author-input" value="{{author}}" />
+  <input type="text" name="author" id="author-input" value="{{book.author}}" />
 
   <label for="description-input">Description:</label>
-  <textarea name="description" id="description-input" cols="30" rows="4">{{description}} </textarea>
+  <textarea name="description" id="description-input" cols="30" rows="4">{{book.description}} </textarea>
 
   <label for="rate-input">Rate:</label>
-  <input type="number" name="rating" id="rate-input" min="1" max="10" value="{{rating}}" />
+  <input type="number" name="rating" id="rate-input" min="1" max="10" value="{{book.rating}}" />
+  
+  <label for="image-input">Image:</label>
+  <input type="text" name="image" id="image-input" value="{{book.image}}" />
 
   <button type="submit">Save changes</button>
 

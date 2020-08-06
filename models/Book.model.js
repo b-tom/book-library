@@ -6,7 +6,11 @@ const bookSchema = new Schema(
     title: String,
     description: String,
     author: String,
-    rating: Number
+    rating: Number,
+    image: {
+      type: String,
+      default: '/images/books.jpg'
+    }
   },
   {
   timestamp: true
