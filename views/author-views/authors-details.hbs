@@ -1,8 +1,13 @@
-<h3>{{fullName}}</h3>
-<p>Date of Birth: {{dateOfBirth}}</p>
-<p>Nacionality: {{nacionality}}</p>
-{{#if awardsWinner}}
+<h3>{{author.fullName}}</h3>
+<p>Date of Birth: {{author.dateOfBirth}}</p>
+<p>Nacionality: {{author.nacionality}}</p>
+{{#if author.awardWinner}}
 <p>Has won an award</p>
-{{#else}}
+{{else}}
 <p>Has not won an award</p>
 {{/if}}
+<img src="{{author.image}}" alt="{{author.fullName}} picture">
+<hr>
+<a href="/authors/edit/{{author._id}}">Edit</a>
+<a href="/authors">Back</a>
+<form action="/authors/delete/{{author._id}}" method="post"><button>Delete</button></form>

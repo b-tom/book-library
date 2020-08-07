@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Book = require('../../models/Book.model.js');
+const Author = require('../..models/Author.model.js');
 
 //GET Books Page
 router.get('/', (req,res) => {
@@ -27,7 +28,7 @@ router.post('/create', (req, res, next) => {
       .catch(error => console.log(`Error while creating book: ${error}`));
 });
 
-//GET route to display de selected book details (by the book id)
+//GET route to display the selected book details (by the book id)
 router.get('/details/:bookId', (req, res, next) => {
   Book.findById(req.params.bookId)
   .then((theBook) => {

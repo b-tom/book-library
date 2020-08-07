@@ -1,8 +1,13 @@
 <h1>Authors</h1>
-<hr>
+<a href="/authors/create">Create an Author</a>
+
 
 {{#each authors}}
 <div>
-  <h3>{{fullName}}</h3>
   <hr>
+  <h3>{{fullName}}</h3>
+  <a href="/authors/details/{{_id}}">See Details</a>
+  <a href="/authors/edit/{{_id}}">Edit</a>
+
 </div>
+{{/each}}
