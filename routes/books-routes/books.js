@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Book = require('../../models/Book.model.js');
-const Author = require('../..models/Author.model.js');
+const Author = require('../../models/Author.model.js');
 
 //GET Books Page
 router.get('/', (req,res) => {
@@ -20,10 +20,17 @@ router.get('/create', (req, res, next) => {
 
 //POST Route to save new book to the database
 router.post('/create', (req, res, next) => {
-  console.log( {body: req.body} );
-  Book.create(req.body)
+  const newBook = {
+    title: req.body.title,
+    description: req.body.description,
+    rating: req.body.rating,
+    image: req.body.image
+  }
+  
+
+  Book.create(newBook)
       .then((createdBook) => {
-        res.render(`book-views/book-details`, {book: createdBook});
+        res.redirect(`/books/details/${createdBook._id}` );
       })
       .catch(error => console.log(`Error while creating book: ${error}`));
 });
@@ -44,9 +51,20 @@ router.get('/edit/:bookId', (req, res, next) => {
   const { bookId } = req.params;
 
   Book.findById(bookId)
-    .then(bookToEdit => {
-      console.log(bookToEdit);
-      res.render('book-views/book-edit', {book: bookToEdit});
+    .then((bookToEdit) => {
+      Author.find()
+        .then((authors) => {
+          const data = {
+            ...bookToEdit,
+            authors,
+            edit: true,
+          };
+          console.log(data)
+          res.render("book-views/book-edit", data);
+        })
+        .catch((err) => {
+          console.log(`Error getting authors when editing books: ${err}`);
+        });
     })
     .catch(error => console.log(`Error while getting the book to edit${error}`));
 });
@@ -55,8 +73,17 @@ router.get('/edit/:bookId', (req, res, next) => {
 router.post('/edit/:bookId', (req, res, next) => {
   Book.findByIdAndUpdate(req.params.bookId, req.body, { new: true })
     .then((updatedBook) => {
-      console.log(`Updated Book information ${updatedBook}`);
-      res.redirect(`/books`);
+      Author.find({_id: {$in: updatedBook.author } })
+        .then(async (authorsArray) => {
+          await authorsArray.forEach(async (author) => {
+            if(!author.books.includes(req.params.bookId)) {
+              author.books.push(req.params.bookId);
+              await author.save();
+            }
+          });
+          res.redirect(`/books/details/${updatedBook._id}`);
+        })
+        .catch((err) => console.log(`error getting authors from books array: ${err}`));
     })
     .catch(err => console.log(`Error while updating the book: ${err}`));
 });
