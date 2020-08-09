@@ -6,6 +6,7 @@ const Author = require('../../models/Author.model.js');
 //GET Books Page
 router.get('/', (req,res) => {
   Book.find()
+  // .populate('author')
   .then(allTheBooksFromDB => {
     console.log('Retreived books from DB', allTheBooksFromDB);
     res.render('book-views/books-list', { books: allTheBooksFromDB });
@@ -38,6 +39,7 @@ router.post('/create', (req, res, next) => {
 //GET route to display the selected book details (by the book id)
 router.get('/details/:bookId', (req, res, next) => {
   Book.findById(req.params.bookId)
+  .populate('author')
   .then((theBook) => {
     console.log(`The ID from the URL is: ${theBook._id}`);
     console.log(`The Book Information is: ${theBook}`);

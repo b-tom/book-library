@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
   .catch(err => console.log(`Error while retreiving authors ${err}`));
 });
 
-//GET route to display the Form to create a new book
+//GET route to display the Form to create a new author
 router.get('/create', (req, res, next) => {
   res.render('author-views/author-create');
 });
@@ -30,6 +30,7 @@ router.post('/create', (req, res, next) => {
 //GET route to display the selected author details (by author id)
 router.get('/details/:authorId', (req, res, next) => {
   Author.findById(req.params.authorId)
+  .populate('books')
   .then((theAuthor) => {
     console.log(`The Author information is ${theAuthor}`);
     res.render('author-views/authors-details', {author: theAuthor})

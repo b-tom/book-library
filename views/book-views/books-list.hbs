@@ -4,8 +4,8 @@
 
 {{#each books}}
 <div>
+  <img src="{{image}}" alt="{{title}} picture">
   <h3>{{title}}</h3>
-  <p>By: {{author}}</p>
   <a href="/books/details/{{_id}}">See Details</a>
   <a href="/books/edit/{{_id}}">Edit</a>
   <form action="/books/delete/{{this._id}}" method="post"><button>Delete</button></form>

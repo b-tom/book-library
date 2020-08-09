@@ -1,10 +1,18 @@
 <h3>{{author.fullName}}</h3>
 <p>Date of Birth: {{author.dateOfBirth}}</p>
 <p>Nacionality: {{author.nacionality}}</p>
+<p>Books:
+  <ul>
+    {{#each author.books}}
+      <li><a href="/books/details/{{_id}}">{{title}}</a></li>
+    {{/each}}
+  </ul>
+</p>
+
 {{#if author.awardWinner}}
-<p>Has won an award</p>
+  <p>Has won an award</p>
 {{else}}
-<p>Has not won an award</p>
+  <p>Has not won an award</p>
 {{/if}}
 <img src="{{author.image}}" alt="{{author.fullName}} picture">
 <hr>

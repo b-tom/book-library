@@ -54,5 +54,6 @@ app.locals.title = 'Book Library';
 app.use('/', require('./routes/index'));
 app.use('/books', require('./routes/books-routes/books'));
 app.use('/authors', require('./routes/authors-routes/authors'));
+app.use('/auth', require('./routes/auth-routes/auth'));
 
 module.exports = app;
