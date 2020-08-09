@@ -1,21 +1,28 @@
-<h3>{{author.fullName}}</h3>
-<p>Date of Birth: {{author.dateOfBirth}}</p>
-<p>Nacionality: {{author.nacionality}}</p>
-<p>Books:
-  <ul>
-    {{#each author.books}}
-      <li><a href="/books/details/{{_id}}">{{title}}</a></li>
-    {{/each}}
-  </ul>
-</p>
-
-{{#if author.awardWinner}}
-  <p>Has won an award</p>
-{{else}}
-  <p>Has not won an award</p>
-{{/if}}
-<img src="{{author.image}}" alt="{{author.fullName}} picture">
+<h1>{{author.fullName}}</h1>
 <hr>
-<a href="/authors/edit/{{author._id}}">Edit</a>
-<a href="/authors">Back</a>
+<div class='detailsContainer'>
+  <div class='details'>
+    <p><b>Date of Birth:</b> {{author.dateOfBirth}}</p>
+    <p><b>Nacionality:</b> {{author.nacionality}}</p>
+    <p><b>Books:</b></p>
+    <ul>
+      {{#each author.books}}
+        <li><a href="/books/details/{{_id}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
+    
+    {{#if author.awardWinner}}
+      <p>Has won an award</p>
+    {{else}}
+      <p>Has not won an award</p>
+    {{/if}}
+  </div>
+  <img src="{{author.image}}" alt="{{author.fullName}} picture">
+</div>
+
+<hr>
+<div class='detailsLinkContainer'>
+  <a href="/authors/edit/{{author._id}}">Edit</a>
+  <a href="/authors">Back</a>
+</div>
 <form action="/authors/delete/{{author._id}}" method="post"><button>Delete</button></form>

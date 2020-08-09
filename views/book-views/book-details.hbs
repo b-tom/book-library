@@ -1,12 +1,23 @@
 <h1>{{book.title}}</h1>
 <hr>
-{{#each book.author}}
-  <p>Written by: <a href="/authors/details/{{_id}}">{{fullName}}</a></p>
-{{/each}}
-<p>Summary: {{book.description}}</p>
-<p>Rating: {{book.rating}}/10</p>
-<img src="{{book.image}}" alt="{{book.title}} picture">
+
+<div class='detailsContainer'>
+  <div class='details'>
+    <p><b>Written by:</b></p>
+    <ul>
+      {{#each book.author}}
+        <li><a href="/authors/details/{{_id}}">{{fullName}}</a></li>
+      {{/each}}
+    </ul>
+    <p><b>Summary:</b> {{book.description}}</p>
+    <p><b>Rating:</b> {{book.rating}}/10</p>
+  </div>
+  <img src="{{book.image}}" alt="{{book.title}} picture">
+</div>
+
 <hr>
-<a href="/books/edit/{{book._id}}">Edit</a>
-<a href="/books">Back</a>
+<div class='detailsLinkContainer'>
+  <a href="/books/edit/{{book._id}}">Edit</a>
+  <a href="/books">Back</a>
+</div>
 <form action="/books/delete/{{book._id}}" method="post"><button>Delete</button></form>

@@ -4,5 +4,17 @@
     Username
     <input type="text" name="username" placeholder="Your Username" />
   </label>
-  
+  <label>
+    Email
+    <input type="email" name="email" placeholder="Your Email">
+  </label>
+  <label>
+    <input type="password" name="password" placeholder="*****">
+  </label>
+
+  <button type='submit'>Create an Account</button>
+
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
 </form>

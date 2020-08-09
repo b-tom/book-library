@@ -1,19 +1,23 @@
 <h2>Edit the book: {{_doc.title}}</h2>
-
 <form action="/books/edit/{{_doc._id}}" method="post">
-
-  <label for="title-input">Title:</label>
-  <input type="text" name="title" id="title-input" value="{{_doc.title}}" />
-
-  <label for="description-input">Description:</label>
-  <textarea name="description" id="description-input" cols="30" rows="4">{{_doc.description}} </textarea>
-
-  <label for="rate-input">Rate:</label>
-  <input type="number" name="rating" id="rate-input" min="1" max="10" value="{{_doc.rating}}" />
-  
-  <label for="image-input">Image:</label>
-  <input type="text" name="image" id="image-input" value="{{_doc.image}}" />
-
+<div class="editMainContainer">
+    <div>
+      <label for="title-input">Title:</label>
+      <input type="text" name="title" id="title-input" value="{{_doc.title}}" />
+    </div>
+    <div>
+      <label for="description-input">Description:</label>
+      <textarea name="description" id="description-input" cols="30" rows="4">{{_doc.description}} </textarea>
+    </div>
+    <div>
+      <label for="rate-input">Rate:</label>
+      <input type="number" name="rating" id="rate-input" min="1" max="10" value="{{_doc.rating}}" />
+    </div>
+    <div>
+      <label for="image-input">Image:</label>
+      <input type="text" name="image" id="image-input" value="{{_doc.image}}" />
+    </div>
+  </div>
   <br>
 
   <div>
