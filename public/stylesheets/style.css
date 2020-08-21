@@ -6,12 +6,16 @@ a {
   color: #00B7FF; }
 
 /*# sourceMappingURL=style.css.map */
-.bookListContainer{
+nav {
+  display: flex;
+  justify-content: space-between; }
+
+.bookListContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-}
-.bookList{
+  justify-content: center; }
+
+.bookList {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,58 +24,49 @@ a {
   border: solid 2px #00B7FF;
   margin: 10px;
   height: 400px;
-  padding: 5px;
-}
+  padding: 5px; }
 
 .bookList > img {
   max-width: 100%;
   max-height: 100%;
-  height: 80%;
-}
+  height: 80%; }
 
 .bookList > h3 {
-  margin: 5px 0px;
-}
+  margin: 5px 0px; }
 
-.bookListLinks{
-  margin-bottom: 5px;
-}
+.bookListLinks {
+  margin-bottom: 5px; }
 
-.bookListLinks a{
+.bookListLinks a {
   width: 50px;
-  margin-bottom: 5px;
-}
+  margin-bottom: 5px; }
 
-.detailsContainer{
+.detailsContainer {
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  padding-left: 5px;
-}
+  padding-left: 5px; }
 
-.detailsContainer > img{
-  height: 400px;
-}
+.detailsContainer > img {
+  height: 400px; }
 
-.detailsContainer ul li{
+.detailsContainer ul li {
   list-style-type: none;
-  margin-top: 5px;
-}
-.details{
+  margin-top: 5px; }
+
+.details {
   width: 50%;
-  padding-right: 15px;
-}
+  padding-right: 15px; }
 
-.detailsLinkContainer{
+.detailsLinkContainer {
   margin-bottom: 10px;
-  margin-top: 10px;
-}
+  margin-top: 10px; }
 
-.editMainContainer > div{
-  margin-top: 10px;
-}
+.editMainContainer > div {
+  margin-top: 10px; }
 
-.editMainContainer > div > label{
+.editMainContainer > div > label {
   display: flex;
-  align-items: center;
-}
+  align-items: center; }
+
+/*# sourceMappingURL=style.css.map */

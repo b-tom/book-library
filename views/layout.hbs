@@ -15,8 +15,15 @@
           <a href="/authors">Authors</a>
       </div>
       <div>
+          {{#if user}}
+          <a href="/auth/profile">Profile</a>
+          <form action="/auth/logout" method='POST'>
+            <button>Logout</button>
+          </form>
+          {{else}}
           <a href="/auth/signup">Sign Up</a>    
-          <a href="/auth/login">Log In</a>    
+          <a href="/auth/login">Log In</a>
+          {{/if}}
       </div>
     </nav>
     

@@ -83,7 +83,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if(bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.loggedInUser = user;
-        res.redirect('/profile');
+        res.redirect('/auth/profile');
       } else {
         res.render('auth-views/login-form', {
           errorMessage: 'Incorrect password.'
@@ -95,12 +95,12 @@ router.post('/login', (req, res, next) => {
 ////////// --- LOGOUT --- //////////
 
 router.post('/logout', (req, res) => {
-  res.session.destroy();
+  req.session.destroy();
   res.redirect('/');
 });
 
 router.get('/profile', routeGuard, (req, res) => {
-  res.render('users/user-profile');
+  res.render('users-views/user-profile');
 });
 
 module.exports = router ;
