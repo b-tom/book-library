@@ -24,7 +24,8 @@ nav {
   border: solid 2px #00B7FF;
   margin: 10px;
   height: 400px;
-  padding: 5px; }
+  padding: 5px;
+  background-color: grey; }
 
 .bookList > img {
   max-width: 100%;

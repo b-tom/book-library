@@ -12,7 +12,8 @@ const bookSchema = new Schema(
     image: {
       type: String,
       default: '/images/books.jpg'
-    }
+    },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
   },
   {
   timestamp: true

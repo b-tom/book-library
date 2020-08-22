@@ -39,7 +39,13 @@ router.post('/create', (req, res, next) => {
 //GET route to display the selected book details (by the book id)
 router.get('/details/:bookId', (req, res, next) => {
   Book.findById(req.params.bookId)
-  .populate('author')
+  .populate('author comments')
+  .populate({
+    path:'comments',
+    populate: {
+      path: 'author'
+    }
+  })
   .then((theBook) => {
     console.log(`The ID from the URL is: ${theBook._id}`);
     console.log(`The Book Information is: ${theBook}`);
@@ -98,5 +104,7 @@ router.post("/delete/:bookId", (req, res, send) => {
     })
     .catch(error => `Error while deleting Book: ${error}`);
 });
+
+
 
 module.exports = router;

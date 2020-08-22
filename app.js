@@ -57,6 +57,7 @@ app.use('/', require('./routes/index'));
 app.use('/books', require('./routes/books-routes/books'));
 app.use('/authors', require('./routes/authors-routes/authors'));
 app.use('/auth', require('./routes/auth-routes/auth'));
+app.use('/', require('./routes/comment-routes/comment'));
 
 //Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));

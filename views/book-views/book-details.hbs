@@ -21,3 +21,20 @@
   <a href="/books">Back</a>
 </div>
 <form action="/books/delete/{{book._id}}" method="post"><button>Delete</button></form>
+
+<div>
+  {{#unless book.comments}}
+    <p>No comments yet</p>
+  {{/unless}}
+
+  {{#each book.comments}}
+    <p><b> {{ this.author.username }} </b> {{this.content}}</p>
+  {{/each}}
+</div>
+<div>
+  <h3>Add a comment</h3>
+  <form action="/books/details/{{book._id}}/comment" method="POST">
+  <textarea name="content" id="" cols="30" rows="10"></textarea>
+  <button type='submit'>Comment</button>
+  </form>
+</div>
