@@ -32,9 +32,14 @@
   {{/each}}
 </div>
 <div>
+  {{#if user}}
   <h3>Add a comment</h3>
   <form action="/books/details/{{book._id}}/comment" method="POST">
   <textarea name="content" id="" cols="30" rows="10"></textarea>
   <button type='submit'>Comment</button>
   </form>
+{{else}}
+  <p>Log in to add a comment</p>
+{{/if}}
+  
 </div>
